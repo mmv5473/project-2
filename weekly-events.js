@@ -40,7 +40,7 @@ export class WeeklyEvents extends DDDSuper(I18NMixin(LitElement)) {
      return html`
      <div class="banner">
         <h1 class="top-heading">${this.topHeading}</h1>
-        <p class ="placeHolder"> events can be found here such as schedule and next game</p>
+        <p class ="placeHolder"> Events can be found here such as schedule and next game</p>
 
           <slot></slot>
 
@@ -48,4 +48,4 @@ export class WeeklyEvents extends DDDSuper(I18NMixin(LitElement)) {
   }
 }
 
-globalThis.customElements.define(UpcomingEvents.tag, UpcomingEvents);
+globalThis.customElements.define(WeeklyEvents.tag, WeeklyEvents);

@@ -42,7 +42,7 @@ export class Playerinfo extends DDDSuper(I18NMixin(LitElement)) {
 
   render() {
      return html`
-     <div class="playerInfo">
+     <div class="PlayerInfo">
         <h1 class="top-heading">${this.topHeading}</h1>
         <p class ="placeHolder"> Team images and information about players can be found here</p>
 
@@ -52,4 +52,4 @@ export class Playerinfo extends DDDSuper(I18NMixin(LitElement)) {
   }
 }
 
-globalThis.customElements.define(playerInfo.tag, playerInfo);
+globalThis.customElements.define(PlayerInfo.tag, PlayerInfo);
