@@ -2,10 +2,10 @@ import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
-export class Playerinfo extends DDDSuper(I18NMixin(LitElement)) {
+export class MyTryouts extends DDDSuper(I18NMixin(LitElement)) {
 
   static get tag() {
-    return "player-info";
+    return "my-tryouts";
   }
    static get properties() {
     return {
@@ -17,7 +17,7 @@ export class Playerinfo extends DDDSuper(I18NMixin(LitElement)) {
   constructor() {
     super();
     this.active = false;
-    this.topHeading = "About the Players";
+    this.topHeading = "";
     };
   
     static get styles() {
@@ -25,15 +25,14 @@ export class Playerinfo extends DDDSuper(I18NMixin(LitElement)) {
     css`
       :host {
         display: block;
-        background-color: var(--ddd-theme-default-keystoneYellow);
-        padding: var(--ddd-spacing-5); 
+        background-color: var(--ddd-theme-default-alertUrgent);
       }
       .top-heading{
-        color: var(--ddd-theme-default-white);
-                font-weight: var(--ddd-font-weight-bold);
+        color: var(--ddd-theme-default-inventOrange);
+        font-weight: var(--ddd-font-weight-bold);
       }
       .placeHolder{
-        color: var(--ddd-theme-default-white);
+       color: var(--ddd-theme-default-inventOrange);
       }
    
 
@@ -42,9 +41,8 @@ export class Playerinfo extends DDDSuper(I18NMixin(LitElement)) {
 
   render() {
      return html`
-     <div class="PlayerInfo">
+     <div class="placeHolder">
         <h1 class="top-heading">${this.topHeading}</h1>
-        <p class ="placeHolder"> Team images and information about players can be found here</p>
 
           <slot></slot>
 
@@ -52,4 +50,4 @@ export class Playerinfo extends DDDSuper(I18NMixin(LitElement)) {
   }
 }
 
-globalThis.customElements.define(PlayerInfo.tag, PlayerInfo);
+globalThis.customElements.define(MyTryouts.tag, MyTryouts);

@@ -2,10 +2,10 @@ import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
-export class NavigationBar extends DDDSuper(I18NMixin(LitElement)) {
+export class NavBar extends DDDSuper(I18NMixin(LitElement)) {
 
   static get tag() {
-    return "navigation-bar";
+    return "nav-bar";
   }
    static get properties() {
     return {
@@ -17,38 +17,68 @@ export class NavigationBar extends DDDSuper(I18NMixin(LitElement)) {
   constructor() {
     super();
     this.active = false;
-    this.topHeading = "Lehigh Valley Basketball Team";
     };
   
     static get styles() {
     return [super.styles,
     css`
-      :host {
+    :host {
         display: block;
         background-color: var(--ddd-theme-default-alertUrgent);
-      }
-      .top-heading{
-        color: var(--ddd-theme-default-keystoneYellow);
-        font-weight: var(--ddd-font-weight-bold);
-      }
-      .placeHolder{
-       color: var(--ddd-theme-default-keystoneYellow);
-      }
-   
+    }
+    .navBar{
+        display: flex;
+        align-items: center;
+        padding: var(--ddd-spacing-3);
+    }
+    .nav-links {
+        display: flex;
+        gap: var(--ddd-spacing-4);
+        margin-left: auto;
+        margin-right: var(--ddd-spacing-8);
+    }
+    .nav-links a {
+        color: var(--ddd-theme-default-white); 
+        background-color: var(--ddd-theme-default-inventOrange); 
+        padding: var(--ddd-spacing-1) var(--ddd-spacing-3);
+        border-radius: var(--ddd-radius-sm);
+        text-decoration: none;
+    }
+    .logo {
+        width: 100px;
+        margin-right: var(--ddd-spacing-5);
+    }
+
 
     `];
   }
 
+  _navigate(page) {
+  this.dispatchEvent(new CustomEvent("nav-change", {
+    detail: { page },
+    bubbles: true,
+    composed: true
+  }));
+}
+
   render() {
      return html`
      <div class="navBar">
-        <h1 class="top-heading">${this.topHeading}</h1>
-        <p class ="placeHolder"> navigation options, such as about us, schedule, roster, and register will be found on the top bar.</p>
 
-          <slot></slot>
+     <img src="/images/mini-logo.png" alt="logo" class="logo">
+
+      <div class="nav-links">
+        <a @click=${(e) => { e.preventDefault(); this._navigate("home"); }} class="home"> home</a>
+         <a @click=${(e) => { e.preventDefault(); this._navigate("schedule"); }} class="schedule"> Schedule</a>
+        <a @click=${(e) => { e.preventDefault(); this._navigate("teamInfo"); }} class="teamInfo"> Meet the Tean</a>
+        <a @click=${(e) => { e.preventDefault(); this._navigate("tryouts"); }} class="tryouts"> Tryouts</a>
+        <a @click=${(e) => { e.preventDefault(); this._navigate("signUp"); }} class="signUp"> Sign Up</a>
+    </div>
+
+            <slot></slot>
 
       </div>`;
   }
 }
 
-globalThis.customElements.define(NavigationBar.tag, NavigationBar);
+globalThis.customElements.define(NavBar.tag, NavBar);

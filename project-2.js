@@ -1,13 +1,20 @@
 /**
- * Copyright 2026 mjr7121-sketch
+ * Copyright 2026 mmv5473
  * @license Apache-2.0, see LICENSE for full text.
  */
 import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
-import "./navigation-bar.js";
-import "./player-info.js";
-import "./weekly-events.js";
+import "./nav-bar.js";
+import "./team-stats.js";
+import "./upcoming-events.js";
+import "./team-roster.js";
+import "./sign-up.js";
+import "./home-page.js";
+import "./about-us.js";
+import "./contact-us.js";
+import "./my-schedule.js";
+import "./my-tryouts.js";
 
 /**
  * `project-2`
@@ -25,6 +32,7 @@ export class Project2 extends DDDSuper(I18NMixin(LitElement)) {
     super();
     this.title = "";
     this.t = this.t || {};
+    this.page = "home";
     this.t = {
       ...this.t,
       title: "Title",
@@ -42,6 +50,7 @@ export class Project2 extends DDDSuper(I18NMixin(LitElement)) {
     return {
       ...super.properties,
       title: { type: String },
+      page: { type: String }
     };
   }
 
@@ -61,28 +70,42 @@ export class Project2 extends DDDSuper(I18NMixin(LitElement)) {
       h3 span {
         font-size: var(--project-2-label-font-size, var(--ddd-font-size-s));
       }
-      .top-heading{
-        font-size: var(--ddd-font-size-m);
-        font-weight: var(--ddd-font-weight-bold);
-        color: var(--ddd-theme-default-skyBlue);
+      .page {
+      max-width: 100%;
+      }
+
+    .content {
+      padding: var(--ddd-spacing-4);
       }
     `];
   }
 
+  _changePage(e) {
+  this.page = e.detail.page;
+  }
+
   // Lit render the HTML
   render() {
-    return html`
-<div class="page">
+  return html`
+  
+  <div class="page">
 
-  <navigation-bar></navigation-bar>
+      <nav-bar @nav-change=${(e) => this._changePage(e)}></nav-bar>
 
-  <player-info></player-info>
+      ${this.page === "home" ? html`<home-page></home-page>` : ""}
 
-  <weekly-events></weekly-events>
-       
-  <slot></slot>
-</div>`;
-  }
+      ${this.page === "schedule" ? html`<my-schedule></my-schedule>` : ""}
+
+      ${this.page === "tryouts" ? html`<my-tryouts></my-tryouts>` : ""}
+
+       <!-- YOUR ROSTER ADDED HERE --> 
+      ${this.page === "teamInfo" ? html`<team-roster></team-roster>` : ""}
+
+      ${this.page === "signUp" ? html`<sign-up></sign-up>` : ""}
+
+    </div>
+  `;
+}
 
   /**
    * haxProperties integration via file reference
