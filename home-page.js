@@ -17,7 +17,7 @@ export class homePage extends DDDSuper(I18NMixin(LitElement)) {
   constructor() {
     super();
     this.active = false;
-    this.topHeading = "Lehigh Valley Inferno";
+    this.topHeading = "Lehigh Valley Inferno Basketball";
     };
   
     static get styles() {

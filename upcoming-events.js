@@ -17,7 +17,7 @@ export class UpcomingEvents extends DDDSuper(I18NMixin(LitElement)) {
   constructor() {
     super();
     this.active = false;
-    this.topHeading = "Upcoming events";
+    this.topHeading = "Upcoming Events";
     };
   
     static get styles() {
@@ -26,56 +26,72 @@ export class UpcomingEvents extends DDDSuper(I18NMixin(LitElement)) {
       :host {
         display: block;
         width: 100%;
-        background-color: var(--ddd-theme-default-alertUrgent);
+        background-color: light-dark(var(--ddd-theme-default-inventOrange), var(--ddd-theme-default-alertUrgent));
+        padding: var(--ddd-spacing-5);
+
       }
       .top-heading{
-        color: var(--ddd-theme-default-inventOrange);
+        color: light-dark(var(--ddd-theme-default-alertUrgent), var(--ddd-theme-default-inventOrange));
         font-weight: var(--ddd-font-weight-bold);
         margin: 0; 
-        margin-top: var(--ddd-spacing-4); 
-        margin-left: var(--ddd-spacing-8); 
+        text-align: center;
       }
       .event-title{
-        margin: 10px;
+        margin: 0 0 var(--ddd-spacing-3) 0;
+        font-size: var(--ddd-font-size-l);
+        font-weight: var(--ddd-font-weight-bold);
+        color: light-dark(var(--ddd-theme-default-inventOrange), var(--ddd-theme-default-white));
       }
 
       .events-container {
         display: flex;
-        justify-content: flex-start; 
-        margin-left: var(--ddd-spacing-8);   
+        justify-content: center;
+        margin-left: 0;  
         gap: var(--ddd-spacing-6); 
         margin-top: var(--ddd-spacing-5);
         flex-wrap: wrap; 
         margin-bottom: var(--ddd-spacing-9);
+        
         }
 
         .event-card {
-        background-color: var(--ddd-theme-default-inventOrange);
-        color: var(--ddd-theme-default-white);
+        background-color: light-dark(var(--ddd-theme-default-alertUrgent), var(--ddd-theme-default-inventOrange));
 
-        width: 180px;
-        height: 150px;
+        width: 240px;
+        height: 200px;
 
         display: flex;
         flex-direction: column;      
         align-items: center;
-        justify-content: flex-start; 
+        justify-content: center;
 
-        border-radius: 6px;
-        padding: var(--ddd-spacing-2);
+        border-radius: var(--ddd-radius-md);
+        padding: var(--ddd-spacing-4);
     }
 
-    .event-img {
-        width: 80%;          
-        height: auto;        
-        max-height: 80px;    
+      .event-img {
+        width: 85%;          
+        height: 115px;        
         object-fit: cover;    
-        border-radius: 4px;
-}
-   
+        border-radius: var(--ddd-radius-sm);
+      }
 
+      .event-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--ddd-boxShadow-lg);
+        cursor: pointer;
+      }
+   
     `];
   }
+
+  _navigate(page) {
+  this.dispatchEvent(new CustomEvent("nav-change", {
+    detail: { page },
+    bubbles: true,
+    composed: true
+  }));
+}
 
   render() {
      return html`
@@ -83,19 +99,19 @@ export class UpcomingEvents extends DDDSuper(I18NMixin(LitElement)) {
         <h1 class="top-heading">${this.topHeading}</h1>
 
     <div class="events-container">
-        <div class="event-card">
+        <div class="event-card" @click=${() => this._navigate("my-tryouts")}>
         <p class="event-title">Tryouts</p>
-        <img src="/images/tryouts.jpg" alt="tryouts" class="event-img">
+        <img src="/images/inferno-tryouts.png" alt="tryouts" class="event-img">
         </div>
 
-        <div class="event-card">
+        <div class="event-card" @click=${() => this._navigate("my-schedule")}>
         <p class="event-title">Practices</p>
-        <img src="/images/practice.jpg" alt="Pratices" class="event-img">
+        <img src="/images/inferno-practices.png" alt="Practices" class="event-img">
         </div>
 
-        <div class="event-card">
+        <div class="event-card" @click=${() => this._navigate("my-schedule")}>
         <p class="event-title">Next Game</p>
-        <img src="/images/nextMatch.jpg" alt="Next Match" class="event-img">
+        <img src="/images/inferno-next-game.png" alt="Next Game" class="event-img">
         </div>
 
     </div>

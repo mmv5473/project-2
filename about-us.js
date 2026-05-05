@@ -17,7 +17,7 @@ export class AboutUs extends DDDSuper(I18NMixin(LitElement)) {
   constructor() {
     super();
     this.active = false;
-    this.topHeading = "Mini Master's Golf Club";
+    this.topHeading = "Lehigh Valley Inferno Basketball";
     };
   
     static get styles() {
@@ -25,20 +25,22 @@ export class AboutUs extends DDDSuper(I18NMixin(LitElement)) {
         css`
       :host {
         display: block;
-        background-color: var(--ddd-theme-default-inventOrange);
+        background-color: light-dark(var(--ddd-theme-default-alertUrgent), var(--ddd-theme-default-inventOrange));
         padding: var(--ddd-spacing-5); 
+        box-shadow: inset 0 -40px 60px rgba(0,0,0,0.2);
       }
       .top-heading{
-        color: var(--ddd-theme-default-white);
+        color: light-dark(var(--ddd-theme-default-inventOrange), var(--ddd-theme-default-white));
         font-weight: var(--ddd-font-weight-bold);
         margin: 0; 
         margin-top: var(--ddd-spacing-2); 
         text-align: center;
  
       }
-      .about-us-sumary{
-        color: var(--ddd-theme-default-white);
+      .about-us-summary{
+        color: light-dark(var(--ddd-theme-default-inventOrange), var(--ddd-theme-default-white));
         margin-top: var(--ddd-spacing-4); 
+        line-height: var(--ddd-lh-150);
         text-align: center;
         max-width: 600px;   
         margin-left: auto;
@@ -48,8 +50,7 @@ export class AboutUs extends DDDSuper(I18NMixin(LitElement)) {
       .logo{
         width: 250px;
         display: block;        
-        margin: 0 auto;
-    
+        margin: var(--ddd-spacing-4) auto 0;
       }
    
 
@@ -57,14 +58,15 @@ export class AboutUs extends DDDSuper(I18NMixin(LitElement)) {
   }
 
   render() {
-     return html`
+
+    return html`
      <div class="teamInfo">
 
         <h1 class="top-heading">${this.topHeading}</h1>
 
-        <img src="/images/mini-logo.png" alt="logo" class="logo">
+        <img src="/images/inferno-logo.png" alt="Lehigh Valley Inferno Logo" class="logo">
 
-        <p class ="about-us-sumary">The Lehigh Valley Inferno is an AAU basketball team dedicated to giving high school athletes the opportunity to gain exposure to college coaches and scouts. With an elite coaching staff that focuses on discipline, teamwork, and character, this program can develop college-ready basketball players.</p>
+        <p class ="about-us-summary">TThe Lehigh Valley Inferno is an AAU basketball team dedicated to giving high school athletes the opportunity to gain exposure to college coaches and scouts. With an elite coaching staff that focuses on discipline, teamwork, and character, this program can develop college-ready basketball players.</p>
 
           <slot></slot>
 

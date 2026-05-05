@@ -24,25 +24,36 @@ export class ContactUs extends DDDSuper(I18NMixin(LitElement)) {
     return [super.styles,
     css`
       :host {
-        display: block;
-        background-color: var(--ddd-theme-default-inventOrange);
-
-        padding-top: var(--ddd-spacing-4);
-        padding-bottom: var(--ddd-spacing-9);
+      display: block;
+      background-color: light-dark(var(--ddd-theme-default-alertUrgent), var(--ddd-theme-default-inventOrange));
+      padding: var(--ddd-spacing-5);
+      box-shadow: inset 0 -40px 60px rgba(0,0,0,0.2);
       }
-        .top-heading{
-        color: var(--ddd-theme-default-white);
-        font-weight: var(--ddd-font-weight-bold);
-        margin: 0; 
-        margin-top: var(--ddd-spacing-4); 
-        margin-left: var(--ddd-spacing-8); 
+      .top-heading{
+      color: light-dark(var(--ddd-theme-default-inventOrange), var(--ddd-theme-default-white));
+      font-weight: var(--ddd-font-weight-bold);
+      margin: 0;
+      text-align: center;
       }
       .contact-info{
-        color: var(--ddd-theme-default-white);
-        margin-top: var(--ddd-spacing-4); 
-        justify-content: flex-start; 
-        margin-left: var(--ddd-spacing-8);  
-        max-width: 600px;    
+      background-color: light-dark(var(--ddd-theme-default-inventOrange), var(--ddd-theme-default-alertUrgent));
+      color: light-dark(var(--ddd-theme-default-white), var(--ddd-theme-default-forestGreen));
+
+      width: 320px;
+      min-height: 130px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: var(--ddd-radius-md);
+      padding: var(--ddd-spacing-4);
+      margin: var(--ddd-spacing-5) auto var(--ddd-spacing-4);
+
+      font-size: var(--ddd-font-size-m);
+      font-weight: var(--ddd-font-weight-bold);
+      text-align: center; 
       }
    
 
@@ -54,8 +65,7 @@ export class ContactUs extends DDDSuper(I18NMixin(LitElement)) {
 
         <h1 class="top-heading">${this.topHeading}</h1>
 
-        <p class= "contact-info">Email: lehighvalleyinfernobball@gmail.com <br>
-                                Phone: 111-111-1111</p>
+        <p class= "contact-info">Email: lehighvalleyinfernobball@gmail.com <br> Phone: 111-111-1111</p>
 
           <slot></slot>
 

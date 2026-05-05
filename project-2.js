@@ -1,5 +1,5 @@
 /**
- * Copyright 2026 mmv5473
+ * Copyright 2026 mjr7121-sketch
  * @license Apache-2.0, see LICENSE for full text.
  */
 import { LitElement, html, css } from "lit";
@@ -32,18 +32,54 @@ export class Project2 extends DDDSuper(I18NMixin(LitElement)) {
     super();
     this.title = "";
     this.t = this.t || {};
-    this.page = "home";
+    this.page = localStorage.getItem("project2-page") || "home";
+
     this.t = {
       ...this.t,
       title: "Title",
     };
+
     this.registerLocalization({
       context: this,
       localesPath:
-        new URL("./locales/project-2.ar.json", import.meta.url).href +
-        "/../",
-    });
+      new URL("./locales/project-2.ar.json", import.meta.url).href +
+      "/../",
+  });
+}
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    const path = window.location.pathname.replace("/", "");
+
+    if (path === "") {
+      this.page = "home";
+    }
+    else if (path === "schedule") {
+      this.page = "schedule";
+    }
+    else if (path === "teamInfo") {
+      this.page = "teamInfo";
+    }
+    else if (path === "my-tryouts") {
+      this.page = "my-tryouts";
+    }
+    else if (path === "signUp") {
+      this.page = "signUp";
+    }
+
+  window.addEventListener("popstate", this._handlePopState);
   }
+
+  disconnectedCallback() {
+    window.removeEventListener("popstate", this._handlePopState);
+    super.disconnectedCallback();
+  }
+
+  _handlePopState = () => {
+    const path = window.location.pathname.replace("/", "");
+    this.page = path || "home";
+  };
 
   // Lit reactive properties
   static get properties() {
@@ -81,7 +117,11 @@ export class Project2 extends DDDSuper(I18NMixin(LitElement)) {
   }
 
   _changePage(e) {
-  this.page = e.detail.page;
+    this.page = e.detail.page;
+    localStorage.setItem("project2-page", this.page);
+
+    const slug = this.page === "home" ? "/" : `/${this.page}`;
+    history.pushState({ page: this.page }, "", slug);
   }
 
   // Lit render the HTML
@@ -92,14 +132,16 @@ export class Project2 extends DDDSuper(I18NMixin(LitElement)) {
 
       <nav-bar @nav-change=${(e) => this._changePage(e)}></nav-bar>
 
-      ${this.page === "home" ? html`<home-page></home-page>` : ""}
+      ${this.page === "home" ? html`<home-page @nav-change=${(e) => this._changePage(e)}></home-page>` : ""}
 
-      ${this.page === "schedule" ? html`<my-schedule></my-schedule>` : ""}
+      ${this.page === "schedule" || this.page === "my-schedule" ? html`<my-schedule></my-schedule>` : ""}
 
-      ${this.page === "tryouts" ? html`<my-tryouts></my-tryouts>` : ""}
+      ${this.page === "my-tryouts" ? html`<my-tryouts></my-tryouts>` : ""}
 
-       <!-- YOUR ROSTER ADDED HERE --> 
-      ${this.page === "teamInfo" ? html`<team-roster></team-roster>` : ""}
+      ${this.page === "teamInfo" ? html`
+        <team-roster></team-roster>
+        <team-stats></team-stats>
+      ` : ""}
 
       ${this.page === "signUp" ? html`<sign-up></sign-up>` : ""}
 

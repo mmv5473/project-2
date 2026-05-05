@@ -12,7 +12,6 @@ export class TeamRoster extends DDDSuper(I18NMixin(LitElement)) {
     return {
       ...super.properties,
       active: { type: Boolean, reflect: true },
-      page: { type: String },
       coaches: { type: Array },
       players: { type: Array }
     };
@@ -22,9 +21,8 @@ export class TeamRoster extends DDDSuper(I18NMixin(LitElement)) {
     super();
 
     this.active = false;
-    this.page = "roster";
 
-    this.topHeading = "Lehigh Valley Inferno";
+    this.topHeading = "Lehigh Valley Inferno Basketball";
 
   
 
@@ -32,6 +30,7 @@ export class TeamRoster extends DDDSuper(I18NMixin(LitElement)) {
       { name: "Head Coach Stephen Curry", img: "https://cdn.nba.com/headshots/nba/latest/1040x760/201939.png" },
       { name: "Assistant Coach Kevin Durant", img: "https://cdn.nba.com/headshots/nba/latest/1040x760/201142.png" },
       { name: "Assistant Coach Draymond Green", img: "https://cdn.nba.com/headshots/nba/latest/1040x760/203110.png" }
+
     ];
 
     this.players = [
@@ -53,34 +52,27 @@ export class TeamRoster extends DDDSuper(I18NMixin(LitElement)) {
       css`
         :host {
           display: block;
-          background-color: var(--ddd-theme-default-alertUrgent);
-          padding: 16px;
+          background-color: light-dark(var(--ddd-theme-default-alertUrgent), var(--ddd-theme-default-inventOrange));
+          padding: var(--ddd-spacing-4) var(--ddd-spacing-4) var(--ddd-spacing-10);
+          text-align: center;
         }
 
         .top-heading {
-          color: var(--ddd-theme-default-inventOrange);
+          color:light-dark(var(--ddd-theme-default-inventOrange), var(--ddd-theme-default-white));
           font-weight: var(--ddd-font-weight-bold);
-        }
-
-        .button {
-          padding: 10px 16px;
-          background: var(--ddd-theme-default-inventOrange);
-          color: white;
-          border: none;
-          cursor: pointer;
-          margin-top: 20px;
-          border-radius: 6px;
         }
 
         .coaches {
           display: flex;
-          gap: 16px;
-          margin: 20px 0;
-          color:black;
+          justify-content: center;
+          align-items: center;
+          gap: var(--ddd-spacing-4);
+          margin: var(--ddd-spacing-5) auto;
+          color: light-dark(var(--ddd-theme-default-inventOrange), var(--ddd-theme-default-white));
         }
 
         .coach {
-          text-align: center;
+          text-align: center; 
         }
 
         .coach img {
@@ -90,23 +82,25 @@ export class TeamRoster extends DDDSuper(I18NMixin(LitElement)) {
         }
 
         .players {
-          margin-top: 10px;
-          color: black;
+          background-color: light-dark(var(--ddd-theme-default-inventOrange), var(--ddd-theme-default-white));
+          color: light-dark(var(--ddd-theme-default-white), var(--ddd-theme-default-inventOrange));
+          margin: var(--ddd-spacing-5) auto 0 auto;
+          padding: var(--ddd-spacing-4);
+          border-radius: var(--ddd-radius-md);
+          max-width: 500px;
+        }
+
+        .players ul {
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
         }
 
         .players li {
-          margin: 4px 0;
+          margin: var(--ddd-spacing-1) 0;
         }
       `
     ];
-  }
-
-  goRoster() {
-    this.page = "roster";
-  }
-
-  goHome() {
-    this.page = "home";
   }
 
   render() {
@@ -117,22 +111,15 @@ export class TeamRoster extends DDDSuper(I18NMixin(LitElement)) {
             <div class="navBar">
               <h1 class="top-heading">${this.topHeading}</h1>
 
-              <button class="button" @click=${this.goRoster}>
-                View Roster
-              </button>
             </div>
           `
         : html`
             <div class="navBar">
               <h1 class="top-heading">Team Roster</h1>
 
-              <button class="button" @click=${this.goHome}>
-                Back
-              </button>
-
              <!-- Coaches -->
 <div class="coaches-section">
-  <h3 class="top-heading">Our Elite Coaching Staff!</h3>
+  <h3 class="top-heading">Our Coaching Staff</h3>
 
   <div class="coaches">
     ${this.coaches.map(
@@ -146,7 +133,7 @@ export class TeamRoster extends DDDSuper(I18NMixin(LitElement)) {
   </div>
 </div>
 
-              <!-- players -->
+              <!-- Players -->
               <div class="players">
                 <h3>Meet our team!</h3>
                 <ul>
