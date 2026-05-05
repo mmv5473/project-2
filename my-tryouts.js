@@ -76,7 +76,7 @@ export class MyTryouts extends DDDSuper(I18NMixin(LitElement)) {
 
       <div class="box-row">
         <div class="box">
-         <img src="/images/inferno-calendar.png" alt="date" class="tryouts-img">
+         <img src="\images\inferno-calendar.png" alt="date" class="tryouts-img">
           <h2>When</h2>
           <p>May 1st, 2026</p>
           <p>3:00 PM - 5:15 PM</p>
