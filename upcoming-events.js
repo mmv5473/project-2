@@ -106,7 +106,7 @@ export class UpcomingEvents extends DDDSuper(I18NMixin(LitElement)) {
 
         <div class="event-card" @click=${() => this._navigate("my-schedule")}>
         <p class="event-title">Practices</p>
-        <img src="/images/inferno-practices.png" alt="Practices" class="event-img">
+        <img src="/images/inferno-practice.png" alt="Practices" class="event-img">
         </div>
 
         <div class="event-card" @click=${() => this._navigate("my-schedule")}>

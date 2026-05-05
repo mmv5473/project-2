@@ -90,8 +90,8 @@ export class MyTryouts extends DDDSuper(I18NMixin(LitElement)) {
 
         <div class="box">
           <img src="/images/inferno-equipment.png" alt="Basketball, Uniform, Water, and Basketball Shoes" class="tryouts-img">
-          <h2>Bring</h2>
-          <p>Basketball, water bottle, uniform, and basketball shoes.</p>
+          <h2>What to Bring</h2>
+          <p>Basketball, Water Bottle, Uniform, and Basketball Shoes.</p>
         </div>
       </div>
 
