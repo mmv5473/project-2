@@ -66,7 +66,7 @@ export class AboutUs extends DDDSuper(I18NMixin(LitElement)) {
 
         <img src="/images/inferno-logo.png" alt="Lehigh Valley Inferno Logo" class="logo">
 
-        <p class ="about-us-summary">TThe Lehigh Valley Inferno is an AAU basketball team dedicated to giving high school athletes the opportunity to gain exposure to college coaches and scouts. With an elite coaching staff that focuses on discipline, teamwork, and character, this program can develop college-ready basketball players.</p>
+        <p class ="about-us-summary">The Lehigh Valley Inferno is an AAU basketball team dedicated to giving high school athletes the opportunity to gain exposure to college coaches and scouts. With an elite coaching staff that focuses on discipline, teamwork, and character, this program can develop college-ready basketball players.</p>
 
           <slot></slot>
 
