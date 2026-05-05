@@ -37,7 +37,7 @@ export class ContactUs extends DDDSuper(I18NMixin(LitElement)) {
       }
       .contact-info{
       background-color: light-dark(var(--ddd-theme-default-inventOrange), var(--ddd-theme-default-alertUrgent));
-      color: light-dark(var(--ddd-theme-default-white), var(--ddd-theme-default-forestGreen));
+      color: light-dark(var(--ddd-theme-default-white), var(--ddd-theme-default-inventOrange));
 
       width: 320px;
       min-height: 130px;
@@ -65,7 +65,7 @@ export class ContactUs extends DDDSuper(I18NMixin(LitElement)) {
 
         <h1 class="top-heading">${this.topHeading}</h1>
 
-        <p class= "contact-info">Email: lehighvalleyinfernobball@gmail.com <br> Phone: 111-111-1111</p>
+        <p class= "contact-info">Email: lvinfernobball@gmail.com <br> Phone: 111-111-1111</p>
 
           <slot></slot>
 
